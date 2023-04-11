@@ -48,6 +48,8 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
         binding.listButton.setOnClickListener(this)
         binding.playButton.setOnClickListener(this)
         binding.stopButton.setOnClickListener(this)
+        binding.nextButton.setOnClickListener(this)
+        binding.backButton.setOnClickListener(this)
         binding.seekBar.max = mediaPlayer!!.duration
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -117,6 +119,24 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
                 binding.totalDuration.text = SimpleDateFormat("mm:ss").format(musicData.duration)
                 binding.playButton.setImageResource(R.drawable.play_24)
             }
+
+            R.id.nextButton -> {
+                if (currentposition < playList!!.size - 1) {
+                    currentposition++
+                } else {
+                    currentposition = 0
+                }
+                getMango()
+            }
+
+            R.id.backButton -> {
+                if (currentposition > 0) {
+                    currentposition--
+                } else {
+                    currentposition = playList!!.size - 1
+                }
+                getMango()
+            }
         }
     }
 
@@ -126,5 +146,26 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
         mediaPlayer?.release()
         mediaPlayer = null
         finish()
+    }
+
+    fun getMango() {
+        mediaPlayer?.stop()
+        musicData = playList!!.get(currentposition) as MusicData
+        mediaPlayer = MediaPlayer.create(this, musicData.getMusicUri())
+        binding.seekBar.progress = 0
+        binding.playDuration.text = "00:00"
+        binding.seekBar.max = mediaPlayer?.duration ?: 0
+        binding.totalDuration.text =
+            SimpleDateFormat("mm:ss").format(musicData.duration)
+        binding.albumTitle.text = musicData.title
+        binding.albumArtist.text = musicData.artist
+        binding.playButton.setImageResource(R.drawable.play_24)
+        val bitmap = musicData.getAlbumBitmap(this, ALBUM_IMAGE_SIZE)
+        if (bitmap != null) {
+            binding.albumImage.setImageBitmap(bitmap)
+        } else {
+            binding.albumImage.setImageResource(R.drawable.music_24)
+        }
+//        mediaPlayer?.start()
     }
 }
