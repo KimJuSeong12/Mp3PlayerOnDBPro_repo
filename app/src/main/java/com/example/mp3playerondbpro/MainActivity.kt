@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mp3playerondbpro.MainActivity.Companion.REQUEST_CODE
 import com.example.mp3playerondbpro.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -82,8 +83,8 @@ class MainActivity : AppCompatActivity() {
             // 좋아요 된것만 가져오기
             R.id.menu_like -> {
                 val musicDataLikeList = dbOpenHelper.selectMusicLike()
-                Log.e("MainActivity", "musicDataLikeList.size = ${musicDataLikeList?.size}")
-                if (musicDataLikeList!!.size <= 0 || musicDataLikeList == null) {
+                if (musicDataLikeList == null) {
+                    Log.e("MainActivity", "musicDataLikeList.size = 0")
                     Toast.makeText(applicationContext, "좋아요리스트가 없습니다.", Toast.LENGTH_SHORT).show()
                 } else {
                     musicDataList?.clear()

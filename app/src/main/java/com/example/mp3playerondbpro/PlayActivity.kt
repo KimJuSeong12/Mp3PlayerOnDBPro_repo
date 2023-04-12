@@ -81,32 +81,7 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
                     mediaPlayer?.start()
                     binding.playButton.setImageResource(R.drawable.pause)
                     pauseFlag = false
-
-                    //코루틴으로 음악을 재생
-                    val backgroundScope = CoroutineScope(Dispatchers.Default + Job())
-                    mp3playerJob = backgroundScope.launch {
-                        while (mediaPlayer!!.isPlaying) {
-                            var currentPosition = mediaPlayer?.currentPosition!!
-                            //코루틴속에서 화면의 값을 변동시키고자 할대 runOnUiThread
-                            runOnUiThread {
-                                binding.seekBar.progress = currentPosition
-                                binding.playDuration.text =
-                                    SimpleDateFormat("mm:ss").format(mediaPlayer?.currentPosition)
-                            }
-                            try {
-                                delay(1000)
-                            } catch (e: java.lang.Exception) {
-                                Log.e("PlayActivity", "delay 오류발생 ${e.printStackTrace()}")
-                            }
-                        }//end of while
-                        if (pauseFlag == false) {
-                            runOnUiThread {
-                                binding.seekBar.progress = 0
-                                binding.playDuration.text = "00:00"
-                                binding.playButton.setImageResource(R.drawable.play_24)
-                            }
-                        }
-                    }//end of mp3PlayerJob
+                    getCoroutine()
                 }
             }
             R.id.stopButton -> {
@@ -127,6 +102,8 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
                     currentposition = 0
                 }
                 getMango()
+                mediaPlayer?.start()
+                getCoroutine()
             }
 
             R.id.backButton -> {
@@ -136,8 +113,37 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
                     currentposition = playList!!.size - 1
                 }
                 getMango()
+                mediaPlayer?.start()
+                getCoroutine()
             }
         }
+    }
+
+    private fun getCoroutine() {
+        val backgroundScope = CoroutineScope(Dispatchers.Default + Job())
+        mp3playerJob = backgroundScope.launch {
+            while (mediaPlayer!!.isPlaying) {
+                var currentPosition = mediaPlayer?.currentPosition!!
+                //코루틴속에서 화면의 값을 변동시키고자 할대 runOnUiThread
+                runOnUiThread {
+                    binding.seekBar.progress = currentPosition
+                    binding.playDuration.text =
+                        SimpleDateFormat("mm:ss").format(mediaPlayer?.currentPosition)
+                }
+                try {
+                    delay(1000)
+                } catch (e: java.lang.Exception) {
+                    Log.e("PlayActivity", "delay 오류발생 ${e.printStackTrace()}")
+                }
+            }//end of while
+            if (pauseFlag == false) {
+                runOnUiThread {
+                    binding.seekBar.progress = 0
+                    binding.playDuration.text = "00:00"
+                    binding.playButton.setImageResource(R.drawable.play_24)
+                }
+            }
+        }//end of mp3PlayerJob
     }
 
     override fun onBackPressed() {
@@ -159,13 +165,13 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
             SimpleDateFormat("mm:ss").format(musicData.duration)
         binding.albumTitle.text = musicData.title
         binding.albumArtist.text = musicData.artist
-        binding.playButton.setImageResource(R.drawable.play_24)
+        binding.playButton.setImageResource(R.drawable.pause)
         val bitmap = musicData.getAlbumBitmap(this, ALBUM_IMAGE_SIZE)
         if (bitmap != null) {
             binding.albumImage.setImageBitmap(bitmap)
         } else {
             binding.albumImage.setImageResource(R.drawable.music_24)
         }
-//        mediaPlayer?.start()
+        mediaPlayer?.start()
     }
 }
