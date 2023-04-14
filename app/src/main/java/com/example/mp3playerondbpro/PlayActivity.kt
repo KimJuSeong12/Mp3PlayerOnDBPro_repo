@@ -1,6 +1,7 @@
 package com.example.mp3playerondbpro
 
 import android.media.MediaPlayer
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
@@ -50,6 +51,7 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
         binding.stopButton.setOnClickListener(this)
         binding.nextButton.setOnClickListener(this)
         binding.backButton.setOnClickListener(this)
+        binding.shuffleButton.setOnClickListener(this)
         binding.seekBar.max = mediaPlayer!!.duration
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -116,6 +118,13 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
                 mediaPlayer?.start()
                 getCoroutine()
             }
+
+            R.id.shuffleButton -> {
+                currentposition = (Math.random() * playList!!.size).toInt()
+                getMango()
+                mediaPlayer?.start()
+                getCoroutine()
+            }
         }
     }
 
@@ -136,6 +145,7 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
                     Log.e("PlayActivity", "delay 오류발생 ${e.printStackTrace()}")
                 }
             }//end of while
+
             if (pauseFlag == false) {
                 runOnUiThread {
                     binding.seekBar.progress = 0
@@ -145,6 +155,8 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
             }
         }//end of mp3PlayerJob
     }
+
+
 
     override fun onBackPressed() {
         mediaPlayer?.stop()
