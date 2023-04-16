@@ -29,7 +29,7 @@ class MusicRecyclerAdapter(val context: Context, val musicList: MutableList<Musi
         if (bitmap != null) {
             binding.ivAlbumArt.setImageBitmap(bitmap)
         } else {
-            binding.ivAlbumArt.setImageResource(R.drawable.music_24)
+            binding.ivAlbumArt.setImageResource(R.drawable.music)
         }
         binding.tvArtist.text = musicList.get(position).artist
         binding.tvTitle.text = musicList.get(position).title
@@ -43,7 +43,7 @@ class MusicRecyclerAdapter(val context: Context, val musicList: MutableList<Musi
         binding.root.setOnClickListener {
             val intent = Intent(binding.root.context, PlayActivity::class.java)
             val parcelableList: ArrayList<Parcelable>? = musicList as ArrayList<Parcelable>
-            intent.putExtra("parcelableList", parcelableList) // 하나만 넘어감 다 넘길려면 mutableList로 해야됨 (과제부분)
+            intent.putExtra("parcelableList", parcelableList)
             intent.putExtra("position",position)
             binding.root.context.startActivity(intent)
         }

@@ -4,24 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     android:orientation="vertical"
     android:weightSum="5"
     tools:context=".PlayActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="530dp"
         android:layout_weight="4"
         android:orientation="vertical"
         android:weightSum="8">
+
+        <ImageView
+            android:id="@+id/listButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
+            android:contentDescription="list"
+            android:minWidth="45dp"
+            android:minHeight="50dp"
+            android:src="@drawable/list_"
+            app:tint="@color/white" />
 
         <ImageView
             android:id="@+id/albumImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="5"
-            android:src="@drawable/music_24" />
+            android:adjustViewBounds="true"
+            android:src="@drawable/music" />
 
         <TextView
             android:id="@+id/albumTitle"
@@ -30,7 +42,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:text="타이틀"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <TextView
@@ -40,6 +52,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:text="아티스트"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -52,7 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:gravity="left"
-                android:text="00:00">
+                android:text="00:00"
+                android:textColor="@color/white">
 
             </TextView>
 
@@ -67,7 +81,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
                 android:gravity="right"
-                android:text="00:00">
+                android:text="00:00"
+                android:textColor="@color/white">
 
             </TextView>
         </LinearLayout>
@@ -83,9 +98,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
         android:layout_weight="1">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/repeatButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -94,9 +110,10 @@
             android:contentDescription="list"
             android:minHeight="48dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/repeat_24" />
+            android:src="@drawable/repeat_one_24"
+            app:tint="@color/white" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -105,20 +122,10 @@
             android:contentDescription="list"
             android:minHeight="48dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/previous_24" />
+            android:src="@drawable/previous_24"
+            app:tint="@color/white" />
 
-        <ImageButton
-            android:id="@+id/listButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:adjustViewBounds="false"
-            android:contentDescription="list"
-            android:minHeight="48dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/list_alt_24" />
-
-        <ImageButton
+        <ImageView
             android:id="@+id/playButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -127,20 +134,10 @@
             android:contentDescription="play"
             android:minHeight="48dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/play_24" />
+            app:srcCompat="@drawable/play_24"
+            app:tint="@color/white" />
 
-        <ImageButton
-            android:id="@+id/stopButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:adjustViewBounds="false"
-            android:contentDescription="next"
-            android:minHeight="48dp"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/stop_24" />
-
-        <ImageButton
+        <ImageView
             android:id="@+id/nextButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -149,9 +146,10 @@
             android:contentDescription="next"
             android:minHeight="48dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/next_24" />
+            app:srcCompat="@drawable/next_24"
+            app:tint="@color/white" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/shuffleButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -160,7 +158,8 @@
             android:contentDescription="next"
             android:minHeight="48dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/shuffle_24" />
+            app:srcCompat="@drawable/shuffle_24"
+            app:tint="@color/white" />
     </LinearLayout>
 
 </LinearLayout>

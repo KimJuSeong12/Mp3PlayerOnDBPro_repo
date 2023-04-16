@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, permission, REQUEST_CODE)
         }
 
+        setSupportActionBar(binding.toolbar)
     }
 
 

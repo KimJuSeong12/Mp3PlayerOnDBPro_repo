@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:text="가수명"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/ivAlbumArt"
         app:layout_constraintTop_toTopOf="@+id/ivAlbumArt" />
 
@@ -33,6 +34,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:text="제목"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/ivAlbumArt"
         app:layout_constraintTop_toBottomOf="@+id/tvArtist" />
 
@@ -43,6 +45,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         android:text="노래 길이"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/ivAlbumArt"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -55,6 +58,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tvDuration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/favorite_unlike_24" />
+        app:srcCompat="@drawable/favorite_unlike_24"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
