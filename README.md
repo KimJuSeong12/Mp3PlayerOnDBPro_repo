@@ -16,5 +16,5 @@ Creating a music player program using Kotlin and SQLite.
 2023-04-13(Thur) ~ 2023-04-16(Sun)
 
 ## Run Application
-https://user-images.githubusercontent.com/126849368/232422997-4b6d674b-7c24-4240-a5b1-eca429f52e79.mp4
+https://user-images.githubusercontent.com/126849368/232424118-5bbdfe65-b715-41f6-9d68-bf37d2ebc09e.mp4
 
